@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Profile\UpdateProfileRequest;
 use App\Http\Resources\Api\PlatformResource;
 use App\Http\Resources\Api\ProfileResource;
+use App\Http\Resources\Api\UserResource;
+use App\Models\BackgroundColor;
+use App\Models\ButtonColor;
+use App\Models\FontStyle;
 use App\Models\User;
 use Exception;
 use Illuminate\Support\Facades\DB;
@@ -32,9 +36,57 @@ class ProfileController extends Controller
             ->get();
 
 
+        // default background color
+        $backgroundColor = BackgroundColor::select(
+            'background_colors.name',
+            'background_colors.color_code',
+            'background_colors.type',
+        )
+            ->join('user_background', 'user_background.background_color_id', 'background_colors.id')
+            ->join('users', 'users.id', 'user_background.user_id')
+            ->where('user_background.user_id', auth()->id())
+            ->first();
+
+        // default button color
+        $buttonColor = ButtonColor::select(
+            'button_colors.name',
+            'button_colors.color_code',
+            'button_colors.type',
+        )
+            ->join('user_button', 'user_button.button_color_id', 'button_colors.id')
+            ->join('users', 'users.id', 'user_button.user_id')
+            ->where('user_button.user_id', auth()->id())
+            ->first();
+
+        // default font style
+        $fontStyle = FontStyle::select(
+            'font_styles.name',
+            'font_styles.font_style',
+            'font_styles.type',
+        )
+            ->join('user_font', 'user_font.font_style_id', 'font_styles.id')
+            ->join('users', 'users.id', 'user_font.user_id')
+            ->where('user_font.user_id', auth()->id())
+            ->first();
+
         return response()->json(
             [
-                'profile' => new ProfileResource(auth()->user()),
+                'profile' => new UserResource(auth()->user()),
+                'background_color' => [
+                    'name' => $backgroundColor->name,
+                    'color_code' => $backgroundColor->color_code,
+                    'type' => $backgroundColor->type == 1 ? 'Free' : 'Pro'
+                ],
+                'button_color' => [
+                    'name' => $buttonColor->name,
+                    'color_code' => $buttonColor->color_code,
+                    'type' => $buttonColor->type == 1 ? 'Free' : 'Pro'
+                ],
+                'font_style' => [
+                    'name' => $fontStyle->name,
+                    'font_style' => $fontStyle->font_style,
+                    'type' => $fontStyle->type == 1 ? 'Free' : 'Pro'
+                ],
                 'platforms' => PlatformResource::collection($platforms)
             ]
         );

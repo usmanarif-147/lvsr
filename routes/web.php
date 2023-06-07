@@ -31,13 +31,22 @@ Route::fallback(function () {
 
 Route::get('/optimize', function () {
     Artisan::call('optimize:clear');
+    dd("cache-cleared");
 });
 
-Route::get('/storage-link', function () {
-    $targetFolder = storage_path('app/public');
-    $linkFolder = $_SERVER['DOCUMENT_ROOT'] . '/storage';
-    symlink($targetFolder, $linkFolder);
-    dd("done");
+Route::get('/create-storage-link', function () {
+    Artisan::call('storage:link');
+    dd("link created");
+});
+
+Route::get('/migrate', function () {
+    Artisan::call('migrate:fresh');
+    dd("migration done");
+});
+
+Route::get('/seed', function () {
+    Artisan::call('db:seed');
+    dd("seeder done");
 });
 
 // Profile using card_id

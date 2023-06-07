@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\PlatformController;
 use App\Http\Controllers\Api\ProfileController as UserProfileController;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ConnectController;
+use App\Http\Controllers\Api\FontStyleController;
 use App\Http\Controllers\Api\StripePaymentController;
 use App\Http\Controllers\Api\ViewProfileController;
 use Illuminate\Support\Facades\Route;
@@ -33,8 +34,6 @@ Route::post('resetPassword', [AuthController::class, 'resetPassword']);
 Route::middleware('auth:sanctum')->group(function () {
 
     Route::middleware('user.status')->group(function () {
-        // Category
-        // Route::get('/categories', [CategoryController::class, 'index']);
 
         Route::post('extraDetails', [AuthController::class, 'extraDetails']);
         // User
@@ -51,6 +50,10 @@ Route::middleware('auth:sanctum')->group(function () {
         // Button Colors
         Route::get('/buttonColors', [ButtonColorController::class, 'allButtonColors']);
         Route::post('/updateButtonColor', [ButtonColorController::class, 'updateButtonColor']);
+
+        // Font Styles
+        Route::get('/fontStyles', [FontStyleController::class, 'allFontStyles']);
+        Route::post('/updateFontStyle', [FontStyleController::class, 'updateFontStyle']);
 
         // User Profile
         Route::get('/profile', [UserProfileController::class, 'index']);

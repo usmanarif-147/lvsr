@@ -57,6 +57,8 @@ class Create extends Component
         $data['name'] = $this->name;
         $data['color_code'] = $this->color_code;
 
+        // dd($data);
+
         BackgroundColor::create($data);
 
         $this->dispatchBrowserEvent('swal:modal', [

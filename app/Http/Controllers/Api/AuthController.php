@@ -13,6 +13,7 @@ use App\Http\Resources\Api\UserResource;
 use App\Mail\ForgotPasswordMail;
 use App\Models\BackgroundColor;
 use App\Models\ButtonColor;
+use App\Models\FontStyle;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -50,7 +51,15 @@ class AuthController extends Controller
             'button_color_id' => $buttonColor->id,
         ]);
 
+        // default font style
+        $fontStyle = FontStyle::where('type', 1)->first();
+        DB::table('user_font')->insert([
+            'user_id' => $user->id,
+            'font_style_id' => $fontStyle->id,
+        ]);
+
         $token = $user->createToken(getDeviceId()  ?: $user->email)->plainTextToken;
+
         return response()->json(
             [
                 'message' => 'Account registered successfully',
@@ -63,6 +72,10 @@ class AuthController extends Controller
                 'button_color' => [
                     'name' => $buttonColor->name,
                     'color_code' => $buttonColor->color_code
+                ],
+                'font_style' => [
+                    'name' => $fontStyle->name,
+                    'font_style' => $fontStyle->font_style
                 ],
             ]
         );
