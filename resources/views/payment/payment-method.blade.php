@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Simple login form</title>
+    <title>Enter Payment Details</title>
     <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700" rel="stylesheet">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <style>
@@ -85,7 +85,7 @@
                 <!-- Stripe Elements Placeholder -->
                 <div id="card-element"></div>
 
-                <input type="hidden" id="user_id" value="{{ $user_id }}">
+                /* <input type="hidden" id="user_id" value="{{ $user_id }}"> */
 
                 <button id="card-button" data-secret="{{ $intent->client_secret }}">
                     Update Payment Method
@@ -111,40 +111,40 @@
     const clientSecret = cardButton.dataset.secret;
 
     cardButton.addEventListener('click', async (e) => {
-        const {
-            setupIntent,
-            error
-        } = await stripe.confirmCardSetup(
-            clientSecret, {
-                payment_method: {
-                    card: cardElement,
-                    billing_details: {
-                        name: cardHolderName.value
-                    }
+    const {
+        setupIntent,
+        error
+    } = await stripe.confirmCardSetup(
+        clientSecret, {
+            payment_method: {
+                card: cardElement,
+                billing_details: {
+                    name: cardHolderName.value
                 }
             }
-        );
-
-        if (error) {
-            console.log(error.message);
-        } else {
-
-            console.log(setupIntent);
-
-            /* $.ajax({
-                type: "POST",
-                url: "{{ route('user-subscribe') }}",
-                data: {
-                    '_token': '{{ csrf_token() }}',
-                    'user_id': $('#user_id').val(),
-                    'data': setupIntent
-                },
-                success: function(res) {
-                    console.log(res.data);
-                },
-            }); */
-
         }
+    );
+
+    if (error) {
+        console.log(error.message);
+    } else {
+
+        /* console.log(setupIntent); */
+
+        /* $.ajax({
+            type: "POST",
+            url: "{{ route('user-subscribe') }}",
+            data: {
+                '_token': '{{ csrf_token() }}',
+                /* 'user_id': $('#user_id').val(), */
+        'data': setupIntent
+    },
+    success: function(res) {
+        console.log(res.data);
+    },
+    });*/
+
+    }
     });
 </script>
 

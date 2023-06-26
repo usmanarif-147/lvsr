@@ -49,6 +49,12 @@ Route::get('/seed', function () {
     dd("seeder done");
 });
 
+//payment setup
+Route::get('/payment-details', function () {
+    dd("working");
+    return view('payment.payment-method');
+})->name('payment.details');
+
 // Profile using card_id
 Route::get('/card_id/{uuid}', function ($uuid) {
 

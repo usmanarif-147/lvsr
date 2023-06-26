@@ -17,9 +17,11 @@ class UserTableSeeder extends Seeder
     public function run(Faker $faker)
     {
         User::create([
-            'username' => 'zubair_123',
-            'email' => 'zubair_123@gmail.com',
+            'username' => 'usman',
+            'email' => 'usman@gmail.com',
             'password' => bcrypt('123456'),
+            'status' => 1,
+            'is_verified' => 1
         ]);
     }
 }

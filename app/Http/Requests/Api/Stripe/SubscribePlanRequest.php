@@ -25,10 +25,18 @@ class SubscribePlanRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'pm_method_id' => ['required'],
-            'plan_id' => ['required']
-        ];
+        if (request()->segment(3) == 'subscribePlan') {
+            return [
+                'setup_intent' => ['required'],
+                'plan_id' => ['required'],
+                'free_trial' => ['required', 'in:0,1']
+            ];
+        }
+        if (request()->segment(3) == 'cancelSubscription' || request()->segment(3) == 'resumeSubscription') {
+            return [
+                'plan_id' => ['required'],
+            ];
+        }
     }
 
     // protected function failedValidation(Validator $validator)

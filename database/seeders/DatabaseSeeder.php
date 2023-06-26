@@ -16,8 +16,8 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            UserTableSeeder::class,
-            AdminTableSeeder::class,
+            // UserTableSeeder::class,
+            // AdminTableSeeder::class,
             BackgroundColorSeeder::class,
             ButtonColorSeeder::class,
             FontStyleSeeder::class

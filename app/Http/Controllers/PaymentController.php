@@ -25,6 +25,9 @@ class PaymentController extends Controller
 
         $plans = $plansraw->data;
 
+        // return $plans;
+        // die();
+
         foreach ($plans as $plan) {
             $prod = $this->stripe->products->retrieve(
                 $plan->product,

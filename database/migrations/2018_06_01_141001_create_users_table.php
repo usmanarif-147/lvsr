@@ -33,7 +33,7 @@ return new class extends Migration
             $table->string('dob')->nullable();
             $table->tinyInteger('private')->default(0);
             $table->tinyInteger('is_verified')->default(0);
-            $table->tinyInteger('is_subscribed')->default(0);
+
             $table->tinyInteger('fetured')->default(0);
             $table->string('fcm_token')->nullable();
             $table->tinyInteger('status')->default(0);

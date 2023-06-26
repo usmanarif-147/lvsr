@@ -93,15 +93,10 @@ Route::middleware('auth:sanctum')->group(function () {
 
         //stripe
         Route::get('/allPlans', [StripePaymentController::class, 'getAllPlans']);
-        Route::post('/choosePlan', [StripePaymentController::class, 'userChoosePlan']);
-        Route::get('/setupPaymentMethod', [StripePaymentController::class, 'setupPaymentMethod']);
-        // Route::post('/storePaymentDetails', [StripePaymentController::class, 'storePaymentDetails']);
-
+        Route::post('/addPaymentDetails', [StripePaymentController::class, 'addPaymentDetails']);
         Route::get('/allPaymentMethods', [StripePaymentController::class, 'getAllPaymentMethods']);
         Route::post('/paymentMethodDetails', [StripePaymentController::class, 'paymentMethodDetails']);
         Route::post('/subscribePlan', [StripePaymentController::class, 'subscribePlan']);
-        Route::post('/cancelSubscription', [StripePaymentController::class, 'cancelSubscription']);
-        Route::post('/resumeSubscription', [StripePaymentController::class, 'resumeSubscription']);
     });
     Route::get('logout', [AuthController::class, 'logout']);
 });

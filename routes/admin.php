@@ -75,8 +75,8 @@ Route::middleware('auth:admin')->group(function () {
 
     // stripe
     Route::get('plans', [PaymentController::class, 'plans']);
-    Route::get('get/plans', [PaymentController::class, 'getPlans']);
-    Route::get('create-payment-method', [PaymentController::class, 'createPaymentMethod']);
+    // Route::get('get/plans', [PaymentController::class, 'getPlans']);
+    // Route::get('create-payment-method', [PaymentController::class, 'createPaymentMethod']);
 
     Route::get('setup-payment-method', [PaymentController::class, 'setupPaymentMethod']);
     Route::post('payment-method-details', [PaymentController::class, 'paymentMethodDetails'])->name('payment-details-details');
