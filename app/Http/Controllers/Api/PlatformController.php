@@ -24,7 +24,7 @@ class PlatformController extends Controller
         $userPlatforms = DB::table('user_platform')
             ->select(
                 'user_platform.platform_id',
-                'user_platform.clicks',
+                'user_platform.total_views',
                 'user_platform.path',
                 'user_platform.label',
             )
@@ -146,94 +146,114 @@ class PlatformController extends Controller
     /**
      * Swap order
      */
-    public function swap(SwapPlatformRequest $request)
-    {
-        // if (!is_array($request->orderList)) {
-        //     return response()->json(['message' => "order list must be an array"]);
-        // }
+    // public function swap(SwapPlatformRequest $request)
+    // {
+    //     if (!is_array($request->orderList)) {
+    //         return response()->json(['message' => "order list must be an array"]);
+    //     }
 
-        // $orderList = json_decode(json_encode($request->orderList));
+    //     $orderList = json_decode(json_encode($request->orderList));
 
-        // foreach ($orderList as $platform) {
-        //     DB::table('user_platform')->where('user_id', auth()->id())
-        //         ->where('platform_id', $platform->id)
-        //         ->update(
-        //             [
-        //                 'platform_order' => $platform->order
-        //             ]
-        //         );
-        // }
+    //     $id = array_column($orderList, 'id');
+    //     array_multisort($id, SORT_ASC, $orderList);
 
-        // return response()->json(['message' => "Order swapped successfully"]);
+    //     foreach ($orderList as $index => $platform) {
 
-        if (!is_array($request->orderList)) {
-            return response()->json(['message' => "order list must be an array"]);
-        }
+    //         DB::table('user_platform')->where('user_id', auth()->id())
+    //             ->where('platform_id', $platform->id)
+    //             ->update(
+    //                 [
+    //                     'platform_order' => $platform->order
+    //                 ]
+    //             );
+    //     }
 
-        $orderList = json_decode(json_encode($request->orderList));
-
-        $id = array_column($orderList, 'id');
-        array_multisort($id, SORT_ASC, $orderList);
-
-        foreach ($orderList as $index => $platform) {
-
-            DB::table('user_platform')->where('user_id', auth()->id())
-                ->where('platform_id', $platform->id)
-                ->update(
-                    [
-                        'platform_order' => $platform->order
-                    ]
-                );
-        }
-
-        return response()->json(['message' => "Order swapped successfully"]);
-    }
+    //     return response()->json(['message' => "Order swapped successfully"]);
+    // }
 
     /**
      * Direct
      */
-    public function direct(PlatformRequest $request)
-    {
-        $userPlatform = DB::table('user_platform')
-            ->where('user_id', auth()->id())
-            ->where('platform_id', $request->platform_id)
-            ->first();
-        if (!$userPlatform) {
-            return response()->json(['message' => 'Platform not found']);
-        }
+    // public function direct(PlatformRequest $request)
+    // {
+    //     $userPlatform = DB::table('user_platform')
+    //         ->where('user_id', auth()->id())
+    //         ->where('platform_id', $request->platform_id)
+    //         ->first();
+    //     if (!$userPlatform) {
+    //         return response()->json(['message' => 'Platform not found']);
+    //     }
 
-        try {
-            DB::table('user_platform')
-                ->where('user_id', auth()->id())
-                ->where('platform_id', $request->platform_id)
-                ->update([
-                    'direct' => $userPlatform->direct ? 0 : 1
-                ]);
+    //     try {
+    //         DB::table('user_platform')
+    //             ->where('user_id', auth()->id())
+    //             ->where('platform_id', $request->platform_id)
+    //             ->update([
+    //                 'direct' => $userPlatform->direct ? 0 : 1
+    //             ]);
 
-            if ($userPlatform->direct) {
-                return response()->json(['message' => 'Plateform updated to hide successfully']);
-            }
-            return response()->json(['message' => 'Plateform updated to visible successfully']);
-        } catch (Exception $ex) {
-            return response()->json(['message' => $ex->getMessage()]);
-        }
-    }
+    //         if ($userPlatform->direct) {
+    //             return response()->json(['message' => 'Plateform updated to hide successfully']);
+    //         }
+    //         return response()->json(['message' => 'Plateform updated to visible successfully']);
+    //     } catch (Exception $ex) {
+    //         return response()->json(['message' => $ex->getMessage()]);
+    //     }
+    // }
 
     /**
      * Increment Click
      */
+    // public function incrementClick(IncrementRequest $request)
+    // {
+    //     if ($request->user_id == auth()->id()) {
+    //         return response()->json(['message' => 'You can not click your own platform']);
+    //     }
+
+    //     DB::table('user_platform')
+    //         ->where('platform_id', $request->platform_id)
+    //         ->where('user_id', $request->user_id)
+    //         ->increment('clicks');
+
+    //     return response()->json(['message' => 'Platform clicked successfully']);
+    // }
+
     public function incrementClick(IncrementRequest $request)
     {
-        if ($request->user_id == auth()->id()) {
-            return response()->json(['message' => 'You can not click your own platform']);
+        $userPlatform = DB::table('user_platform')->where([
+            ['platform_id', $request->platform_id],
+            ['user_id', $request->user_id]
+        ])->first();
+
+        if (!$userPlatform) {
+            return response()->json(['message' => 'Platform not found']);
         }
 
+        if ($request->user_id == auth()->id()) {
+            return response()->json(['message' => 'logged in user can not increment in view on its own platform!']);
+        }
+
+        $clickHistory = DB::table('clicks')->where([
+            ['user_id', $request->user_id],
+            ['platform_id', $request->platform_id],
+            ['user_clicked_on_platform_id', auth()->id()]
+        ])->first();
+
+        if ($clickHistory) {
+            return response()->json(['message' => 'Already Clicked on Platform']);
+        }
+
+        DB::table('clicks')->insert([
+            'user_id' => $request->user_id,
+            'platform_id' => $request->platform_id,
+            'user_clicked_on_platform_id' => auth()->id()
+        ]);
         DB::table('user_platform')
             ->where('platform_id', $request->platform_id)
             ->where('user_id', $request->user_id)
-            ->increment('clicks');
+            ->increment('total_views');
 
-        return response()->json(['message' => 'Platform clicked successfully']);
+        return response()->json(['message' => 'Platform View Incremented Successfully']);
     }
 
     /**
@@ -276,7 +296,6 @@ class PlatformController extends Controller
         }
 
         if ($platfomrSaved) {
-            // dd($platformId, $userPlatforms[0]->platform_id, $savedPlatform);
             return $savedPlatform;
         }
         return null;

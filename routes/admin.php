@@ -15,6 +15,9 @@ use App\Http\Livewire\Admin\Dashboard;
 use App\Http\Livewire\Admin\Font\FontStyles;
 use App\Http\Livewire\Admin\Font\Create as FontCreate;
 use App\Http\Livewire\Admin\Font\Edit as FontEdit;
+use App\Http\Livewire\Admin\Link\Create as LinkCreate;
+use App\Http\Livewire\Admin\Link\Edit as LinkEdit;
+use App\Http\Livewire\Admin\Link\Links;
 use App\Http\Livewire\Admin\Logs;
 use App\Http\Livewire\Admin\Plan\Create as PlanCreate;
 use App\Http\Livewire\Admin\Plan\Edit as PlanEdit;
@@ -39,6 +42,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('platforms', Platforms::class);
     Route::get('platform/create', PlatformCreate::class);
     Route::get('platform/{id}/edit', PlatformEdit::class);
+
+    // links
+    Route::get('links', Links::class);
+    Route::get('link/create', LinkCreate::class);
+    Route::get('link/{id}/edit', LinkEdit::class);
 
     // background colors
     Route::get('background-colors', BackgroundColors::class);

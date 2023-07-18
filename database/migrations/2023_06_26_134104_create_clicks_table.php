@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('user_platform', function (Blueprint $table) {
+        Schema::create('clicks', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('platform_id')->constrained('platforms');
             $table->foreignId('user_id')->constrained('users');
-            $table->integer('total_views')->default(0);
-            $table->string('path')->nullable();
-            $table->integer('platform_order')->default(0);
-            $table->string('label')->nullable();
+            $table->foreignId('link_id')->nullable()->constrained('user_links');
+            $table->foreignId('platform_id')->nullable()->constrained('platforms');
+            $table->foreignId('user_clicked_on_link_id')->nullable()->constrained('users');
+            $table->foreignId('user_clicked_on_platform_id')->nullable()->constrained('users');
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('user_platform');
+        Schema::dropIfExists('clicks');
     }
 };

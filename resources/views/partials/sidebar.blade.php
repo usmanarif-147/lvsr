@@ -18,62 +18,68 @@
         <li class="menu-item {{ request()->is('admin/dashboard') ? 'active' : '' }}">
             <a href="{{ url('admin/dashboard') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
-                <div data-i18n="Analytics">Dashboard</div>
+                <div>Dashboard</div>
             </a>
         </li>
 
         <li class="menu-item {{ request()->is('admin/users') ? 'active' : '' }}">
             <a href="{{ url('admin/users') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-user-pin"></i>
-                <div data-i18n="Analytics">Users</div>
+                <div>Users</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('admin/platforms') ? 'active' : '' }}">
             <a href="{{ url('admin/platforms') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-shape-square"></i>
-                <div data-i18n="Analytics">Platforms</div>
+                <div>Platforms</div>
+            </a>
+        </li>
+        <li class="menu-item {{ request()->is('admin/links') ? 'active' : '' }}">
+            <a href="{{ url('admin/links') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-link"></i>
+                <div>Links</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('admin/background-colors') ? 'active' : '' }}">
             <a href="{{ url('admin/background-colors') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-brush"></i>
-                <div data-i18n="Analytics">Background Colors</div>
+                <div>Background Colors</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('admin/button-colors') ? 'active' : '' }}">
             <a href="{{ url('admin/button-colors') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-palette"></i>
-                <div data-i18n="Analytics">Button Colors</div>
+                <div>Button Colors</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('admin/font-styles') ? 'active' : '' }}">
             <a href="{{ url('admin/font-styles') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-font"></i>
-                <div data-i18n="Analytics">Font Styles</div>
+                <div>Font Styles</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('admin/stripe-plans') ? 'active' : '' }}">
             <a href="{{ url('admin/stripe-plans') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-coin-stack"></i>
-                <div data-i18n="Analytics">Stripe Plan</div>
+                <div>Stripe Plan</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('admin/cards') ? 'active' : '' }}">
             <a href="{{ url('admin/cards') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-credit-card-alt"></i>
-                <div data-i18n="Analytics">Cards</div>
+                <div>Cards</div>
             </a>
         </li>
         <li class="menu-item">
             <a href="javascript:void(0)" onclick="changePassword()" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-key"></i>
-                <div data-i18n="Analytics">Change Password</div>
+                <div>Change Password</div>
             </a>
         </li>
         <li class="menu-item {{ request()->is('admin/logs') ? 'active' : '' }}">
             <a href="{{ url('admin/logs') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-plus-medical"></i>
-                <div data-i18n="Analytics">Logs</div>
+                <div>Logs</div>
             </a>
         </li>
     </ul>

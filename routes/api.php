@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ConnectController;
 use App\Http\Controllers\Api\FontStyleController;
 use App\Http\Controllers\Api\StripePaymentController;
+use App\Http\Controllers\Api\UserLinkController;
 use App\Http\Controllers\Api\ViewProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -62,13 +63,18 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::get('/privateProfile', [UserController::class, 'privateProfile']);
 
         // Platform
-        Route::get('/allPlatfomrs', [PlatformController::class, 'allPlatforms']);
+        Route::get('/allPlatforms', [PlatformController::class, 'allPlatforms']);
         Route::post('/addPlatform', [PlatformController::class, 'add']);
         Route::post('/updatePlatform', [PlatformController::class, 'update']);
         Route::post('/removePlatform', [PlatformController::class, 'remove']);
-        Route::post('/swapOrder', [PlatformController::class, 'swap']);
-        Route::post('/platformDirect', [PlatformController::class, 'direct']);
         Route::post('/platformClick', [PlatformController::class, 'incrementClick']);
+
+        // User Links
+        Route::get('/allLinks', [UserLinkController::class, 'allLinks']);
+        Route::post('/addLink', [UserLinkController::class, 'add']);
+        Route::post('/updateLink', [UserLinkController::class, 'update']);
+        Route::post('/removeLink', [UserLinkController::class, 'remove']);
+        Route::post('/linkClick', [UserLinkController::class, 'incrementClick']);
 
         // Phone Contact
         Route::get('/phoneContacts', [PhoneContactController::class, 'index']);
@@ -96,7 +102,6 @@ Route::middleware('auth:sanctum')->group(function () {
         Route::post('/choosePlan', [StripePaymentController::class, 'userChoosePlan']);
         Route::get('/setupPaymentMethod', [StripePaymentController::class, 'setupPaymentMethod']);
         // Route::post('/storePaymentDetails', [StripePaymentController::class, 'storePaymentDetails']);
-
         Route::get('/allPaymentMethods', [StripePaymentController::class, 'getAllPaymentMethods']);
         Route::post('/paymentMethodDetails', [StripePaymentController::class, 'paymentMethodDetails']);
         Route::post('/subscribePlan', [StripePaymentController::class, 'subscribePlan']);

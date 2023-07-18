@@ -16,11 +16,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call([
-            // UserTableSeeder::class,
-            // AdminTableSeeder::class,
+            AdminTableSeeder::class,
             BackgroundColorSeeder::class,
             ButtonColorSeeder::class,
-            FontStyleSeeder::class
+            FontStyleSeeder::class,
+            UserTableSeeder::class,
+            LinkSeeder::class,
+            PlatformSeeder::class
         ]);
     }
 }

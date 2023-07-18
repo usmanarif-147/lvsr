@@ -38,6 +38,7 @@ class ProfileController extends Controller
 
         // default background color
         $backgroundColor = BackgroundColor::select(
+            'background_colors.id as bg_color_id',
             'background_colors.name',
             'background_colors.color_code',
             'background_colors.type',
@@ -49,6 +50,7 @@ class ProfileController extends Controller
 
         // default button color
         $buttonColor = ButtonColor::select(
+            'button_colors.id as bt_color_id',
             'button_colors.name',
             'button_colors.color_code',
             'button_colors.type',
@@ -60,6 +62,7 @@ class ProfileController extends Controller
 
         // default font style
         $fontStyle = FontStyle::select(
+            'font_styles.id as fs_id',
             'font_styles.name',
             'font_styles.font_style',
             'font_styles.type',
@@ -73,16 +76,19 @@ class ProfileController extends Controller
             [
                 'profile' => new UserResource(auth()->user()),
                 'background_color' => [
+                    'id' => $backgroundColor->bg_color_id,
                     'name' => $backgroundColor->name,
                     'color_code' => $backgroundColor->color_code,
                     'type' => $backgroundColor->type == 1 ? 'Free' : 'Pro'
                 ],
                 'button_color' => [
+                    'id' => $buttonColor->bt_color_id,
                     'name' => $buttonColor->name,
                     'color_code' => $buttonColor->color_code,
                     'type' => $buttonColor->type == 1 ? 'Free' : 'Pro'
                 ],
                 'font_style' => [
+                    'id' => $fontStyle->fs_id,
                     'name' => $fontStyle->name,
                     'font_style' => $fontStyle->font_style,
                     'type' => $fontStyle->type == 1 ? 'Free' : 'Pro'
