@@ -64,19 +64,19 @@ class AuthController extends Controller
             [
                 'message' => 'Account registered successfully',
                 'token' => $token,
-                'user' => new UserResource(User::find($user->id)),
-                'background_color' => [
-                    'name' => $backgroundColor->name,
-                    'color_code' => $backgroundColor->color_code
-                ],
-                'button_color' => [
-                    'name' => $buttonColor->name,
-                    'color_code' => $buttonColor->color_code
-                ],
-                'font_style' => [
-                    'name' => $fontStyle->name,
-                    'font_style' => $fontStyle->font_style
-                ],
+                // 'user' => new UserResource(User::find($user->id)),
+                // 'background_color' => [
+                //     'name' => $backgroundColor->name,
+                //     'color_code' => $backgroundColor->color_code
+                // ],
+                // 'button_color' => [
+                //     'name' => $buttonColor->name,
+                //     'color_code' => $buttonColor->color_code
+                // ],
+                // 'font_style' => [
+                //     'name' => $fontStyle->name,
+                //     'font_style' => $fontStyle->font_style
+                // ],
             ]
         );
     }

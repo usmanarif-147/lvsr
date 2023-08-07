@@ -17,28 +17,39 @@ class Edit extends Component
     public
         $title,
         $icon,
-        $pro,
-        $status,
         $placeholder_en,
-        $placeholder_sv,
+        $placeholder_fr,
+        $placeholder_sp,
         $description_en,
-        $description_sv,
-        $baseURL,
-        $input;
+        $description_fr,
+        $description_sp,
+        $base_url;
 
     protected function rules()
     {
+        // return [
+        //     'title'                  =>        ['required'],
+        //     'icon'                   =>        ['nullable', 'mimes:jpeg,jpg,png', 'max:2000'],
+        //     // 'pro'                    =>        ['required'],
+        //     'status'                 =>        ['required'],
+        //     'placeholder_en'         =>        ['sometimes'],
+        //     'placeholder_sv'         =>        ['sometimes'],
+        //     'description_en'         =>        ['sometimes'],
+        //     'description_sv'         =>        ['sometimes'],
+        //     'baseURL'                =>        ['sometimes'],
+        //     // 'input'                  =>        ['required'],
+        // ];
+
         return [
             'title'                  =>        ['required'],
-            'icon'                   =>        ['nullable', 'mimes:jpeg,jpg,png', 'max:2000'],
-            'pro'                    =>        ['required'],
-            'status'                 =>        ['required'],
+            'icon'                   =>        ['nullable', 'mimes:jpeg,jpg,png', 'max:2048'],
             'placeholder_en'         =>        ['sometimes'],
-            'placeholder_sv'         =>        ['sometimes'],
+            'placeholder_fr'         =>        ['sometimes'],
+            'placeholder_sp'         =>        ['sometimes'],
             'description_en'         =>        ['sometimes'],
-            'description_sv'         =>        ['sometimes'],
-            'baseURL'                =>        ['sometimes'],
-            'input'                  =>        ['required'],
+            'description_fr'         =>        ['sometimes'],
+            'description_sp'         =>        ['sometimes'],
+            'base_url'               =>        ['sometimes'],
         ];
     }
 
@@ -54,14 +65,16 @@ class Edit extends Component
 
         $this->title = $platform->title;
         $this->icon_preview = $platform->icon;
-        $this->pro = $platform->pro;
-        $this->status = $platform->status;
+        // $this->pro = $platform->pro;
+        // $this->status = $platform->status;
         $this->placeholder_en = $platform->placeholder_en;
-        $this->placeholder_sv = $platform->placeholder_sv;
+        $this->placeholder_fr = $platform->placeholder_fr;
+        $this->placeholder_sp = $platform->placeholder_sp;
         $this->description_en = $platform->description_en;
-        $this->description_sv = $platform->description_sv;
-        $this->baseURL = $platform->baseURL;
-        $this->input = $platform->input;
+        $this->description_fr = $platform->description_fr;
+        $this->description_sp = $platform->description_sp;
+        $this->base_url = $platform->base_url;
+        // $this->input = $platform->input;
     }
 
     public function deleteImage($image)
@@ -80,6 +93,7 @@ class Edit extends Component
     public function update()
     {
         $data = $this->validate();
+        // dd($data);
 
         if (!$data['icon']) {
             $data['icon'] = $this->icon_preview;

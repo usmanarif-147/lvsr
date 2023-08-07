@@ -98,55 +98,56 @@ class UserController extends Controller
      */
     public function analytics()
     {
-        $connections = DB::table('connects')->where('connecting_id', auth()->id())->get()->count();
-        $profileViews = User::where('id', auth()->id())->first()->tiks;
+        return "analytivs";
+        // $connections = DB::table('connects')->where('connecting_id', auth()->id())->get()->count();
+        // $profileViews = User::where('id', auth()->id())->first()->tiks;
 
-        $platforms = DB::table('user_platforms')
-            ->select(
-                'platforms.id',
-                'platforms.title',
-                'platforms.icon',
-                'user_platforms.path',
-                'user_platforms.label',
-                'user_platforms.clicks',
-            )
-            ->join('platforms', 'platforms.id', 'user_platforms.platform_id')
-            ->where('user_id', auth()->id())
-            ->orderBy(('user_platforms.platform_order'))
-            ->get();
+        // $platforms = DB::table('user_platforms')
+        //     ->select(
+        //         'platforms.id',
+        //         'platforms.title',
+        //         'platforms.icon',
+        //         'user_platforms.path',
+        //         'user_platforms.label',
+        //         'user_platforms.clicks',
+        //     )
+        //     ->join('platforms', 'platforms.id', 'user_platforms.platform_id')
+        //     ->where('user_id', auth()->id())
+        //     ->orderBy(('user_platforms.platform_order'))
+        //     ->get();
 
 
-        return response()->json(
-            [
-                'user' => [
-                    [
-                        'label' => 'Connections',
-                        'connections' => $connections,
-                        'icon' => 'uploads/photos/total_connections.png',
-                    ],
-                    [
-                        'label' => 'Profile Views',
-                        'profileViews' => $profileViews,
-                        'icon' => 'uploads/photos/profile_views.png',
-                    ],
-                    [
-                        'label' => 'Platform Clicks',
-                        'total_clicks' => $platforms->sum('clicks'),
-                        'icon' => 'uploads/photos/total_clicks.png',
-                    ],
-                    [
-                        'label' => 'Platforms',
-                        'total_platforms' => $platforms->count(),
-                        'icon' => 'uploads/photos/total_platforms.png',
-                    ],
-                    [
-                        'label' => 'Groups',
-                        'total_groups' => Group::where('user_id', auth()->id())->count(),
-                        'icon' => 'uploads/photos/total_groups.png',
-                    ],
-                ],
-                'platforms' => $platforms
-            ]
-        );
+        // return response()->json(
+        //     [
+        //         'user' => [
+        //             [
+        //                 'label' => 'Connections',
+        //                 'connections' => $connections,
+        //                 'icon' => 'uploads/photos/total_connections.png',
+        //             ],
+        //             [
+        //                 'label' => 'Profile Views',
+        //                 'profileViews' => $profileViews,
+        //                 'icon' => 'uploads/photos/profile_views.png',
+        //             ],
+        //             [
+        //                 'label' => 'Platform Clicks',
+        //                 'total_clicks' => $platforms->sum('clicks'),
+        //                 'icon' => 'uploads/photos/total_clicks.png',
+        //             ],
+        //             [
+        //                 'label' => 'Platforms',
+        //                 'total_platforms' => $platforms->count(),
+        //                 'icon' => 'uploads/photos/total_platforms.png',
+        //             ],
+        //             [
+        //                 'label' => 'Groups',
+        //                 'total_groups' => Group::where('user_id', auth()->id())->count(),
+        //                 'icon' => 'uploads/photos/total_groups.png',
+        //             ],
+        //         ],
+        //         'platforms' => $platforms
+        //     ]
+        // );
     }
 }

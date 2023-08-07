@@ -59,6 +59,14 @@ Route::middleware('auth:sanctum')->group(function () {
         // User Profile
         Route::get('/profile', [UserProfileController::class, 'index']);
         Route::post('/updateAccount', [UserProfileController::class, 'update']);
+        Route::post('/accountSettings', [UserProfileController::class, 'accountSettings']);
+        Route::post('/changePassword', [UserProfileController::class, 'changePassword']);
+        Route::post('/askQuestion', [UserProfileController::class, 'askQuestion']);
+
+        // Route::get('/getUserLanguage', [UserProfileController::class, 'getUserLanguage']);
+        // Route::post('/changeLanguage', [UserProfileController::class, 'changeLanguage']);
+
+
         Route::get('/userDirect', [UserProfileController::class, 'userDirect']);
         Route::get('/privateProfile', [UserController::class, 'privateProfile']);
 

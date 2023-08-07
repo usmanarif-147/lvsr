@@ -23,13 +23,6 @@
                                         @else
                                             <img src="{{ asset(isImageExist($icon_preview)) }}" alt="user-avatar"
                                                 class="d-block rounded" height="200" width="170">
-                                            {{-- @if ($icon_preview)
-                                                <img src="{{ asset(isImageExist($icon_preview)) }}" alt="user-avatar"
-                                                    class="d-block rounded" height="200" width="170">
-                                            @else
-                                                <img src="{{ asset('frame_2.webp') }}" alt="user-avatar"
-                                                    class="d-block rounded" height="200" width="170">
-                                            @endif --}}
                                         @endif
 
                                         <div wire:loading wire:target="icon" wire:key="icon">
@@ -43,9 +36,6 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="col-6">
-
                             </div>
                         </div>
 
@@ -62,105 +52,71 @@
                                         placeholder="Enter title">
                                 </div>
                             </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label">
-                                        Type <span class="text-danger"> * </span>
-                                        @error('pro')
-                                            <span class="text-danger error-message">{{ $message }}</span>
-                                        @enderror
-                                    </label>
-                                    <select class="form-select" wire:model="pro">
-                                        <option selected="">Select</option>
-                                        <option value="1">Pro</option>
-                                        <option value="0">Free</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label">
-                                        Status <span class="text-danger"> * </span>
-                                        @error('status')
-                                            <span class="text-danger error-message">{{ $message }}</span>
-                                        @enderror
-                                    </label>
-                                    <select class="form-select" wire:model="status">
-                                        <option selected="">Select</option>
-                                        <option value="1">Active</option>
-                                        <option value="0">Inactive</option>
-                                    </select>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label">
-                                        Placeholder (English)
-                                    </label>
-                                    <input type="text" wire:model="placeholder_en" class="form-control"
-                                        placeholder="Enter placeholder in english for this platform">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label">
-                                        Placeholder (Swedish)
-                                    </label>
-                                    <input type="text" wire:model="placeholder_sv" class="form-control"
-                                        placeholder="Enter placeholder in swedish for this platform">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label">
-                                        Description (English)
-                                    </label>
-                                    <input type="text" wire:model="description_en" class="form-control"
-                                        placeholder="Enter description in english for this platform">
-                                </div>
-                            </div>
-                            <div class="col-6">
-                                <div class="mb-3">
-                                    <label class="form-label">
-                                        Description (Swedish)
-                                    </label>
-                                    <input type="text" wire:model="description_sv" class="form-control"
-                                        placeholder="Enter description in swedish for this platform">
-                                </div>
-                            </div>
-                        </div>
-                        <div class="row">
                             <div class="col-6">
                                 <div class="mb-3">
                                     <label class="form-label">
                                         Base URL
                                     </label>
-                                    <input type="text" wire:model="baseURL" class="form-control"
+                                    <input type="text" wire:model="base_url" class="form-control"
                                         placeholder="Enter Base URL i.e https://facebook.com/">
                                 </div>
                             </div>
-                            <div class="col-6">
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
                                 <div class="mb-3">
                                     <label class="form-label">
-                                        Input Type <span class="text-danger"> * </span>
-                                        @error('input')
-                                            <span class="text-danger error-message">{{ $message }}</span>
-                                        @enderror
+                                        Placeholder (English)
                                     </label>
-                                    <select class="form-select" wire:model="input">
-                                        <option selected="">Select</option>
-                                        <option value="email">Email</option>
-                                        <option value="phone">Phone</option>
-                                        <option value="username">Username</option>
-                                        <option value="url">Url</option>
-                                        <option value="other">Other</option>
-                                    </select>
+                                    <input type="text" wire:model="placeholder_en" class="form-control"
+                                        placeholder="Enter placeholder in English">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        Placeholder (French)
+                                    </label>
+                                    <input type="text" wire:model="placeholder_fr" class="form-control"
+                                        placeholder="Enter placeholder in French">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        Placeholder (Spanish)
+                                    </label>
+                                    <input type="text" wire:model="placeholder_sp" class="form-control"
+                                        placeholder="Enter placeholder in Spanish">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-4">
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        Description (English)
+                                    </label>
+                                    <input type="text" wire:model="description_en" class="form-control"
+                                        placeholder="Enter description in English">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        Description (French)
+                                    </label>
+                                    <input type="text" wire:model="description_fr" class="form-control"
+                                        placeholder="Enter description in French">
+                                </div>
+                            </div>
+                            <div class="col-4">
+                                <div class="mb-3">
+                                    <label class="form-label">
+                                        Description (Spanish)
+                                    </label>
+                                    <input type="text" wire:model="description_sp" class="form-control"
+                                        placeholder="Enter description in Spanish">
                                 </div>
                             </div>
                         </div>

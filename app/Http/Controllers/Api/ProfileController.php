@@ -4,15 +4,20 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Api\Profile\UpdateProfileRequest;
+use App\Http\Requests\Api\ProfileRequest;
 use App\Http\Resources\Api\PlatformResource;
 use App\Http\Resources\Api\ProfileResource;
 use App\Http\Resources\Api\UserResource;
+use App\Mail\AskQuestionMail;
 use App\Models\BackgroundColor;
 use App\Models\ButtonColor;
 use App\Models\FontStyle;
 use App\Models\User;
 use Exception;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Storage;
 
 class ProfileController extends Controller
@@ -153,45 +158,110 @@ class ProfileController extends Controller
         }
     }
 
-    public function userDirect()
+    // public function userDirect()
+    // {
+    //     $user = auth()->user();
+
+    //     if ($user->user_direct) {
+    //         User::where('id', $user->id)
+    //             ->update(
+    //                 [
+    //                     'user_direct' => 0
+    //                 ]
+    //             );
+
+    //         $user = User::find(auth()->id());
+
+    //         return response()->json(['message' => 'All platforms are set to public', 'profile' => new ProfileResource($user)]);
+    //     }
+
+    //     User::where('id', auth()->id())
+    //         ->update(
+    //             [
+    //                 'user_direct' => 1
+    //             ]
+    //         );
+    //     $user = User::find(auth()->id());
+    //     return response()->json(['message' => 'Only first platform on top set to public', 'profile' => new ProfileResource($user)]);
+    // }
+
+    // public function privateProfile()
+    // {
+
+    //     $status = auth()->user()->private ? 'Public' : 'Private';
+
+    //     User::where('id', auth()->id())
+    //         ->update(
+    //             [
+    //                 'user_direct' => auth()->user()->user_direct ? 0 : 1
+    //             ]
+    //         );
+
+    //     return response()->json(['message' => "Profile is set to " . $status, 'data' => auth()->user()]);
+    // }
+
+    /**
+     * Get User Language
+     */
+    public function getUserLanguage()
     {
-        $user = auth()->user();
-
-        if ($user->user_direct) {
-            User::where('id', $user->id)
-                ->update(
-                    [
-                        'user_direct' => 0
-                    ]
-                );
-
-            $user = User::find(auth()->id());
-
-            return response()->json(['message' => 'All platforms are set to public', 'profile' => new ProfileResource($user)]);
-        }
-
-        User::where('id', auth()->id())
-            ->update(
-                [
-                    'user_direct' => 1
-                ]
-            );
-        $user = User::find(auth()->id());
-        return response()->json(['message' => 'Only first platform on top set to public', 'profile' => new ProfileResource($user)]);
     }
 
-    public function privateProfile()
+    /**
+     * Account Settings
+     */
+    public function accountSettings(ProfileRequest $request)
+    {
+        User::where('id', auth()->id())->update($request->validated());
+
+        $user = User::where('id', auth()->id())->get()->first();
+
+        return response()->json([
+            'message' => 'Account Information updated Successfully',
+            'profile' => $user
+        ]);
+    }
+
+    /**
+     * Change Password
+     */
+    public function changePassword(ProfileRequest $request)
+    {
+        $user = User::where('id', auth()->id());
+        if (!Hash::check($request->old_password, $user->first()->password)) {
+            return response()->json(['message' => 'Your current password is not correct']);
+        }
+
+        User::where('id', auth()->id())->update([
+            'password' => Hash::make($request->password)
+        ]);
+
+        return response()->json([
+            'message' => 'Password Updated successfully',
+        ]);
+    }
+
+    /**
+     * Change Language
+     */
+    public function changeLanguage(Request $request)
+    {
+    }
+
+    /**
+     * Ask Question
+     */
+    public function askQuestion(ProfileRequest $request)
     {
 
-        $status = auth()->user()->private ? 'Public' : 'Private';
+        $mailData = [
+            'name' => auth()->user()->name ? auth()->user()->name : auth()->user()->username,
+            'email' => auth()->user()->email,
+            'question' => $request->question
+        ];
 
-        User::where('id', auth()->id())
-            ->update(
-                [
-                    'user_direct' => auth()->user()->user_direct ? 0 : 1
-                ]
-            );
+        Mail::to(env('MAIL_USERNAME'))->send(new AskQuestionMail($mailData));
 
-        return response()->json(['message' => "Profile is set to " . $status, 'data' => auth()->user()]);
+        return response()->json(['message' => 'Mail Sent Sussessfully']);
     }
 }
