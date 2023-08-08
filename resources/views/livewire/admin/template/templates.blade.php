@@ -65,7 +65,12 @@
                                             <img src="{{ asset(isImageExist($template->image)) }}">
                                         </div>
                                     </td>
-                                    <td> {{ $template->type }}</td>
+                                    <td>
+                                        <span
+                                            class="badge {{ $template->type == 1 ? 'bg-label-danger' : 'bg-label-success' }} me-1">
+                                            {{ $template->type == 1 ? 'Free' : 'Pro' }}
+                                        </span>
+                                    </td>
                                     <td>
                                         <span class="badge {{ model_status($template)['background'] }} me-1">
                                             {{ model_status($template)['status'] }}
