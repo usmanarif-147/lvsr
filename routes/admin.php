@@ -25,6 +25,9 @@ use App\Http\Livewire\Admin\Plan\Plans;
 use App\Http\Livewire\Admin\Platform\Create as PlatformCreate;
 use App\Http\Livewire\Admin\Platform\Edit as PlatformEdit;
 use App\Http\Livewire\Admin\Platform\Platforms;
+use App\Http\Livewire\Admin\Template\Create as TemplateCreate;
+use App\Http\Livewire\Admin\Template\Edit as TemplateEdit;
+use App\Http\Livewire\Admin\Template\Templates;
 use App\Http\Livewire\Admin\User\Edit as UserEdit;
 use App\Http\Livewire\Admin\User\Users;
 use Illuminate\Support\Facades\Route;
@@ -62,6 +65,11 @@ Route::middleware('auth:admin')->group(function () {
     Route::get('font-styles', FontStyles::class);
     Route::get('font-style/create', FontCreate::class);
     Route::get('font-style/{id}/edit', FontEdit::class);
+
+    // Template Images
+    Route::get('/templates', Templates::class);
+    Route::get('/template/create', TemplateCreate::class);
+    Route::get('/template/{id}/edit', TemplateEdit::class);
 
     // plans
     Route::get('stripe-plans', Plans::class);

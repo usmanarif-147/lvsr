@@ -13,6 +13,7 @@ use App\Http\Controllers\Api\FontStyleController;
 use App\Http\Controllers\Api\StripePaymentController;
 use App\Http\Controllers\Api\UserLinkController;
 use App\Http\Controllers\Api\ViewProfileController;
+use App\Http\Livewire\Admin\Template\Templates;
 use Illuminate\Support\Facades\Route;
 
 /*

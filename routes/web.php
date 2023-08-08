@@ -40,7 +40,7 @@ Route::get('/create-storage-link', function () {
 });
 
 Route::get('/migrate', function () {
-    Artisan::call('migrate:fresh');
+    Artisan::call('migrate');
     dd("migration done");
 });
 

@@ -58,6 +58,12 @@
                 <div>Font Styles</div>
             </a>
         </li>
+        <li class="menu-item {{ request()->is('admin/templates') ? 'active' : '' }}">
+            <a href="{{ url('admin/templates') }}" class="menu-link">
+                <i class="menu-icon tf-icons bx bx-minus-back"></i>
+                <div>Templates</div>
+            </a>
+        </li>
         <li class="menu-item {{ request()->is('admin/stripe-plans') ? 'active' : '' }}">
             <a href="{{ url('admin/stripe-plans') }}" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-coin-stack"></i>
