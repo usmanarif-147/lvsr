@@ -11,6 +11,7 @@ use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\ConnectController;
 use App\Http\Controllers\Api\FontStyleController;
 use App\Http\Controllers\Api\StripePaymentController;
+use App\Http\Controllers\Api\TemplateController;
 use App\Http\Controllers\Api\UserLinkController;
 use App\Http\Controllers\Api\ViewProfileController;
 use App\Http\Livewire\Admin\Template\Templates;
@@ -56,6 +57,10 @@ Route::middleware('auth:sanctum')->group(function () {
         // Font Styles
         Route::get('/fontStyles', [FontStyleController::class, 'allFontStyles']);
         Route::post('/updateFontStyle', [FontStyleController::class, 'updateFontStyle']);
+
+        // Font Styles
+        Route::get('/templates', [TemplateController::class, 'allTemplates']);
+        Route::post('/updateTemplate', [TemplateController::class, 'updateTemplate']);
 
         // User Profile
         Route::get('/profile', [UserProfileController::class, 'index']);

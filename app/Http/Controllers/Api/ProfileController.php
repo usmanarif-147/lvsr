@@ -12,6 +12,7 @@ use App\Mail\AskQuestionMail;
 use App\Models\BackgroundColor;
 use App\Models\ButtonColor;
 use App\Models\FontStyle;
+use App\Models\Template;
 use App\Models\User;
 use Exception;
 use Illuminate\Http\Request;
@@ -77,6 +78,17 @@ class ProfileController extends Controller
             ->where('user_font.user_id', auth()->id())
             ->first();
 
+        // default template
+        $template = Template::select(
+            'templates.id as temp_id',
+            'templates.image',
+            'templates.type',
+        )
+            ->join('user_templates', 'user_templates.template_id', 'templates.id')
+            ->join('users', 'users.id', 'user_templates.user_id')
+            ->where('user_templates.user_id', auth()->id())
+            ->first();
+
         return response()->json(
             [
                 'profile' => new UserResource(auth()->user()),
@@ -97,6 +109,11 @@ class ProfileController extends Controller
                     'name' => $fontStyle->name,
                     'font_style' => $fontStyle->font_style,
                     'type' => $fontStyle->type == 1 ? 'Free' : 'Pro'
+                ],
+                'template' => [
+                    'id' => $template->temp_id,
+                    'image' => $template->image,
+                    'type' => $template->type == 1 ? 'Free' : 'Pro'
                 ],
                 'platforms' => PlatformResource::collection($platforms)
             ]
