@@ -44,7 +44,7 @@ class ShowProfileController extends Controller
             'background_colors.id as bg_id',
             'background_colors.color_code as bg_color_code',
             'templates.id as temp_id',
-            'templates.image',
+            'templates.image as temp_image',
         )
             ->join('user_font', 'user_font.user_id', 'users.id')
             ->join('font_styles', 'user_font.font_style_id', 'font_styles.id')
@@ -55,6 +55,29 @@ class ShowProfileController extends Controller
             ->join('user_templates', 'user_templates.user_id', 'users.id')
             ->join('templates', 'user_templates.template_id', 'templates.id')
             ->where('users.id', $user->id)
+            ->get()
+            ->map(function ($user) {
+                return [
+                    'user_id' => $user->user_id,
+                    'name' => $user->name ? $user->name : $user->username,
+                    'email' => $user->email ? $user->email : 'N/A',
+                    'bio' => $user->bio ? $user->bio : 'N/A',
+                    'phone' => $user->phone ? $user->phone : 'N/A',
+                    'job_title' => $user->job_title ? $user->job_title : 'N/A',
+                    'company' => $user->company ? $user->company : 'N/A',
+                    'photo' => $user->photo,
+                    'cover_photo' => $user->cover_photo,
+                    'address' => $user->address ? $user->address : 'N/A',
+                    'btn_id' => $user->btn_id,
+                    'btn_color_code' => $user->btn_color_code,
+                    'font_id' => $user->font_id,
+                    'fn_style' => $user->fn_style,
+                    'bg_id' => $user->bg_id,
+                    'bg_color_code' => $user->bg_color_code,
+                    'temp_id' => $user->temp_id,
+                    'temp_image' => $user->temp_image,
+                ];
+            })
             ->first();
 
         $userPlatforms = [];
@@ -80,24 +103,24 @@ class ShowProfileController extends Controller
 
         // $userPlatforms = array_chunk($userPlatforms, 4);
 
-        // dd($userDetails->name);
+        // dd($userDetails['name']);
 
-        if ($userDetails->temp_id == 1) {
+        if ($userDetails['temp_id'] == 1) {
             return view('user-profile.temp-one', compact('userDetails', 'userPlatforms'));
         }
-        if ($userDetails->temp_id == 2) {
+        if ($userDetails['temp_id'] == 2) {
             return view('user-profile.temp-two', compact('userDetails', 'userPlatforms'));
         }
-        if ($userDetails->temp_id == 3) {
+        if ($userDetails['temp_id'] == 3) {
             return view('user-profile.temp-three', compact('userDetails', 'userPlatforms'));
         }
-        if ($userDetails->temp_id == 4) {
+        if ($userDetails['temp_id'] == 4) {
             return view('user-profile.temp-four', compact('userDetails', 'userPlatforms'));
         }
-        if ($userDetails->temp_id == 5) {
+        if ($userDetails['temp_id'] == 5) {
             return view('user-profile.temp-five', compact('userDetails', 'userPlatforms'));
         }
-        if ($userDetails->temp_id == 6) {
+        if ($userDetails['temp_id'] == 6) {
             return view('user-profile.temp-six', compact('userDetails', 'userPlatforms'));
         }
 

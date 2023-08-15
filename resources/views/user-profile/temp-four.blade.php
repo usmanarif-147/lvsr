@@ -29,13 +29,13 @@
                     <div class="background-pink">
                         <div class="pt-5 d-flex justify-content-center">
                             <div class="profile-image">
-                                <img src="{{ asset(isImageExist($userDetails->photo)) }}" class="img-fluid"
+                                <img src="{{ asset(isImageExist($userDetails['photo'])) }}" class="img-fluid"
                                     alt="" />
                             </div>
                         </div>
                         <h5 class="text-center text-white pt-2">@travelblogger_Name</h5>
                         <h6 class="text-center px-5 text-white py-2">
-                            {{ $userDetails->name }}
+                            {{ $userDetails['name'] }}
                             <i class="fa fa-globe" aria-hidden="true"></i>
                         </h6>
                         {{-- <div class="social-icons d-flex justify-content-center gap-4 py-4">
@@ -63,7 +63,7 @@
                         </h6>
 
                         <div class="mx-3 my-4">
-                            <a href="{{ route('add.contact', $userDetails->user_id) }}"
+                            <a href="{{ route('add.contact', $userDetails['user_id']) }}"
                                 class="btn w-100 bg-white d-flex justify-content-center gap-2 py-3">
                                 <i class="fa fa-heart text-danger mt-1" aria-hidden="true"></i>
                                 <h6 class="fw-bold">

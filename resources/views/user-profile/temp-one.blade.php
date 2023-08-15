@@ -29,18 +29,18 @@
                     <div class="background-pink">
                         <div class="pt-5 d-flex justify-content-center">
                             <div class="profile-image">
-                                <img src="{{ asset(isImageExist($userDetails->photo)) }}" class="img-fluid"
+                                <img src="{{ asset(isImageExist($userDetails['photo'])) }}" class="img-fluid"
                                     alt="" />
                             </div>
                         </div>
-                        <h5 class="text-center text-color-pink pt-2">{{ $userDetails->name }}</h5>
+                        <h5 class="text-center text-color-pink pt-2">{{ $userDetails['name'] }}</h5>
                         <h6 class="text-center px-5 text-color-pink py-3">
-                            {{ $userDetails->job_title }} at
-                            {{ $userDetails->company }}
+                            {{ $userDetails['job_title'] }} at
+                            {{ $userDetails['company'] }}
                         </h6>
 
                         <div class="mx-3 my-4">
-                            <a href="{{ route('add.contact', $userDetails->user_id) }}"
+                            <a href="{{ route('add.contact', $userDetails['user_id']) }}"
                                 class="btn w-100 bg-white d-flex justify-content-center gap-2 py-3">
                                 <i class="fa fa-heart text-danger mt-1" aria-hidden="true"></i>
                                 <h6 class="fw-bold">
