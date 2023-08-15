@@ -1,0 +1,32 @@
+body {
+    margin: 0%;
+    padding: 0%;
+  }
+
+  .background-pink {
+    min-height: 100vh;
+    background-image: url('/assets/images/pink-bg.png');
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .profile-image {
+    height: 80px;
+    width: 80px;
+  }
+
+  .profile-image img {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .btn-icon {
+    top: 24%;
+    left: 4.5%;
+  }
+
+  .social-image {
+    height: 40px;
+    width: 40px;
+  }

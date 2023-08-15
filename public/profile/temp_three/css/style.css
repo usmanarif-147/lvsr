@@ -1,0 +1,31 @@
+body {
+    margin: 0%;
+    padding: 0%;
+  }
+  
+  .background-green {
+    min-height: 100vh;
+    background-image: linear-gradient(to top, #92fe9d 40%, #00c9ff 100%);
+  }
+
+  .profile-image {
+    height: 100px;
+    width: 100px;
+  }
+  
+  .profile-image img {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .btn-icon {
+    top: 15.5%;
+    left: 2.5%;
+  }
+
+  .social-image {
+    height: 40px;
+    width: 40px;
+  }

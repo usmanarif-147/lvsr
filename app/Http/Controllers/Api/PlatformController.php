@@ -21,14 +21,14 @@ class PlatformController extends Controller
     public function allPlatforms()
     {
         $platforms = Platform::all();
-        $userPlatforms = DB::table('user_platform')
+        $userPlatforms = DB::table('user_platforms')
             ->select(
-                'user_platform.platform_id',
-                'user_platform.total_views',
-                'user_platform.path',
-                'user_platform.label',
+                'user_platforms.platform_id',
+                'user_platforms.total_views',
+                'user_platforms.path',
+                'user_platforms.label',
             )
-            ->join('platforms', 'platforms.id', 'user_platform.platform_id')
+            ->join('platforms', 'platforms.id', 'user_platforms.platform_id')
             ->where('user_id', auth()->id())
             ->get()
             ->toArray();
@@ -61,7 +61,7 @@ class PlatformController extends Controller
             return response()->json(['message' => 'Platform not found']);
         }
 
-        $platform = DB::table('user_platform')
+        $platform = DB::table('user_platforms')
             ->where('platform_id', $request->platform_id)
             ->where('user_id', auth()->id())
             ->first();
@@ -71,12 +71,12 @@ class PlatformController extends Controller
         }
 
         try {
-            $latestPlatform = DB::table('user_platform')
+            $latestPlatform = DB::table('user_platforms')
                 ->where('user_id', auth()->id())
                 ->latest()
                 ->first();
 
-            $userPlatform = DB::table('user_platform')->insert([
+            $userPlatform = DB::table('user_platforms')->insert([
                 'user_id' => auth()->id(),
                 'platform_id' => $request->platform_id,
                 'label' => $request->label,
@@ -101,7 +101,7 @@ class PlatformController extends Controller
             return response()->json(['message' => 'Platform not found']);
         }
 
-        $platform = DB::table('user_platform')
+        $platform = DB::table('user_platforms')
             ->where('platform_id', $request->platform_id)
             ->where('user_id', auth()->id())
             ->first();
@@ -110,7 +110,7 @@ class PlatformController extends Controller
         }
 
         try {
-            DB::table('user_platform')
+            DB::table('user_platforms')
                 ->where('platform_id', $request->platform_id)
                 ->where('user_id', auth()->id())
                 ->update([
@@ -132,7 +132,7 @@ class PlatformController extends Controller
      */
     public function remove(PlatformRequest $request)
     {
-        $platform = DB::table('user_platform')
+        $platform = DB::table('user_platforms')
             ->where('user_id', auth()->id())
             ->where('platform_id', $request->platform_id)
             ->delete();
@@ -159,7 +159,7 @@ class PlatformController extends Controller
 
     //     foreach ($orderList as $index => $platform) {
 
-    //         DB::table('user_platform')->where('user_id', auth()->id())
+    //         DB::table('user_platforms')->where('user_id', auth()->id())
     //             ->where('platform_id', $platform->id)
     //             ->update(
     //                 [
@@ -176,7 +176,7 @@ class PlatformController extends Controller
      */
     // public function direct(PlatformRequest $request)
     // {
-    //     $userPlatform = DB::table('user_platform')
+    //     $userPlatform = DB::table('user_platforms')
     //         ->where('user_id', auth()->id())
     //         ->where('platform_id', $request->platform_id)
     //         ->first();
@@ -185,7 +185,7 @@ class PlatformController extends Controller
     //     }
 
     //     try {
-    //         DB::table('user_platform')
+    //         DB::table('user_platforms')
     //             ->where('user_id', auth()->id())
     //             ->where('platform_id', $request->platform_id)
     //             ->update([
@@ -210,7 +210,7 @@ class PlatformController extends Controller
     //         return response()->json(['message' => 'You can not click your own platform']);
     //     }
 
-    //     DB::table('user_platform')
+    //     DB::table('user_platforms')
     //         ->where('platform_id', $request->platform_id)
     //         ->where('user_id', $request->user_id)
     //         ->increment('clicks');
@@ -220,7 +220,7 @@ class PlatformController extends Controller
 
     public function incrementClick(IncrementRequest $request)
     {
-        $userPlatform = DB::table('user_platform')->where([
+        $userPlatform = DB::table('user_platforms')->where([
             ['platform_id', $request->platform_id],
             ['user_id', $request->user_id]
         ])->first();
@@ -248,7 +248,7 @@ class PlatformController extends Controller
             'platform_id' => $request->platform_id,
             'user_clicked_on_platform_id' => auth()->id()
         ]);
-        DB::table('user_platform')
+        DB::table('user_platforms')
             ->where('platform_id', $request->platform_id)
             ->where('user_id', $request->user_id)
             ->increment('total_views');
@@ -261,17 +261,17 @@ class PlatformController extends Controller
      */
     private function userPlatform($id)
     {
-        $userPlatform = DB::table('user_platform')
+        $userPlatform = DB::table('user_platforms')
             ->select(
                 'platforms.id',
                 'platforms.title',
                 'platforms.icon',
                 'platforms.base_url',
-                'user_platform.created_at',
-                'user_platform.path',
-                'user_platform.label',
+                'user_platforms.created_at',
+                'user_platforms.path',
+                'user_platforms.label',
             )
-            ->join('platforms', 'platforms.id', 'user_platform.platform_id')
+            ->join('platforms', 'platforms.id', 'user_platforms.platform_id')
             ->where('platform_id', $id)
             ->where('user_id', auth()->id())
             ->first();

@@ -55,8 +55,8 @@ class Cards extends Component
             'cards.status',
             'users.username',
         )
-            ->leftJoin('user_card', 'user_card.card_id', 'cards.id')
-            ->leftJoin('users', 'users.id', 'user_card.user_id')
+            ->leftJoin('user_cards', 'user_cards.card_id', 'cards.id')
+            ->leftJoin('users', 'users.id', 'user_cards.user_id')
             ->when($this->searchQuery, function ($query) {
                 $query->where(function ($query) {
                     $query->where('uuid', 'like', "%$this->searchQuery%")

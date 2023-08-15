@@ -1,0 +1,47 @@
+body {
+  margin: 0%;
+  padding: 0%;
+}
+
+.background-pink {
+  min-height: 100vh;
+  background-image: linear-gradient(to top, #fed6e3 0%, #d3e8e7 100%);
+}
+
+.profile-image {
+  height: 100px;
+  width: 100px;
+}
+
+.profile-image img {
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.text-color-pink {
+  color: #ff9c90;
+}
+
+.bg-pink {
+  background-color: #fe9d96;
+}
+
+.btn-icon {
+  top: 15%;
+  left: 3%;
+}
+
+.social-image {
+    height: 40px;
+    width: 40px;
+  }
+
+/* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  .btn-icon {
+    top: 20%;
+    left: 5%;
+  }
+}

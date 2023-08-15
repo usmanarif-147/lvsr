@@ -1,0 +1,30 @@
+body {
+  margin: 0%;
+  padding: 0%;
+}
+
+.background-purple {
+  min-height: 100vh;
+  background-image: linear-gradient(to top, #7028e4 50%, #fc99c7 100%);
+}
+.profile-image {
+  height: 80px;
+  width: 80px;
+}
+
+.profile-image img {
+  border-radius: 50%;
+  height: 100%;
+  width: 100%;
+  object-fit: cover;
+}
+
+.btn-icon {
+  top: 15.5%;
+  left: 2.5%;
+}
+
+.social-image {
+  height: 40px;
+  width: 40px;
+}

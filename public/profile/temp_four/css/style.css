@@ -1,0 +1,37 @@
+body {
+    margin: 0%;
+    padding: 0%;
+  }
+
+  .background-pink {
+    min-height: 100vh;
+    background-image: linear-gradient(to right, #c4b8aa 0%, #ac7430 100%);  }
+
+  .profile-image {
+    height: 100px;
+    width: 100px;
+  }
+
+  .profile-image img {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+  .btn-icon {
+    top: 25%;
+    left: 3%;
+  }
+
+  .social-image {
+    height: 40px;
+    width: 40px;
+  }
+
+  /* Small devices (landscape phones, less than 768px) */
+@media (max-width: 767.98px) {
+  .btn-icon {
+    top: 28%;
+    left: 5%;
+  }
+}

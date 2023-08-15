@@ -1,0 +1,47 @@
+body {
+    margin: 0%;
+    padding: 0%;
+  }
+
+  .background-image {
+    min-height: 100vh;
+    background-image: url('/assets/images/background.jpg');
+    background-position: center center;
+    background-size: cover;
+  }
+
+  .profile-image {
+    height: 100px;
+    width: 100px;
+  }
+
+  .profile-image img {
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  .word-spacing {
+    letter-spacing: 5px;
+  }
+
+  .btn-icon {
+    top: 5%;
+    left: 1%;
+    background-color: aliceblue;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+  }
+
+  .icon i {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .social-image {
+    height: 40px;
+    width: 40px;
+  }

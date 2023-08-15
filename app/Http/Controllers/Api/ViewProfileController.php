@@ -68,13 +68,13 @@ class ViewProfileController extends Controller
                 'platforms.id',
                 'platforms.title',
                 'platforms.icon',
-                'platforms.input',
-                'platforms.baseUrl',
+                // 'platforms.input',
+                'platforms.base_url',
                 'user_platforms.created_at',
                 'user_platforms.path',
                 'user_platforms.label',
                 'user_platforms.platform_order',
-                'user_platforms.direct',
+                // 'user_platforms.direct',
             )
             ->join('platforms', 'platforms.id', 'user_platforms.platform_id')
             ->where('user_id', $res['user']->id)

@@ -1,0 +1,238 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+
+
+body {
+    margin: 0%;
+    padding: 0%;
+    font-family: 'Poppins', sans-serif;
+    scroll-behavior: smooth;
+}
+
+.logo {
+    height: 50px;
+    width: 50px;
+}
+
+ .navbar-toggler-icon {
+    background-image: url(/assets/images/menu.svg);
+}
+
+.hero-bg {
+    background-color: #e6f3f8;
+}
+
+
+#scrollBtn {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: none; /* Initially hide the button */
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    height: 50px;
+    width: 50px;
+    border-radius: 50%;
+    cursor: pointer;
+    font-size: 35px;
+    z-index: 999;
+    transition: 0.3s;
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 15px -3px, rgba(0, 0, 0, 0.05) 0px 4px 6px -2px;
+  }
+  
+  #scrollBtn:hover {
+    background-color: #fff;
+    color: #007bff;
+    border: 1px solid #007bff;
+  }
+
+.how-it-works-image-2  {
+    height: 385px;
+    width: 600px;
+    border-radius: 20px;
+}
+
+.how-it-works {
+    background-color: #F7F7F7;
+}
+
+.how-it-works-image-2 {
+    height: 380px;
+    width: 600px;
+    border-radius: 20px;
+}
+
+
+.plan_heading h1 {
+    font-weight: 900;
+    font-size: 33px;
+    letter-spacing: 1px;
+    color: #000;
+}
+
+.plan_heading p {
+    color: #777777;
+    font-size: 14px;
+}
+
+.pricing_plan {
+    background-color: #F9F9FF;
+    height: auto;
+    transition: 0.5s;
+}
+
+.outside_circle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    background-color: rgba(132, 144, 255, .1);
+    padding: 40px;
+    height: 150px;
+    width: 150px;
+}
+
+.inside_circle {
+    border: 30px solid rgba(132, 144, 255, .1);
+    border-radius: 50%;
+    height: 100%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.center-div {
+    display: flex;
+    justify-content: center;
+}
+
+.inside_circle h1 {
+    font-size: 35px;
+    padding-top: 10px;
+}
+
+.plan_content h5 {
+    font-weight: 800;
+}
+
+.plan_content p {
+    color: #777777;
+    margin: 0%;
+    font-size: 13px;
+}
+
+.plan_content h2 {
+    font-weight: 800;
+}
+
+.hide {
+    display: none;
+}
+
+.hide button {
+    color: #62bdfc;
+    background-color: #fff;
+    padding: 10px 80px;
+    letter-spacing: 1px;
+}
+
+.pricing_plan:hover .hide {
+    display: block;
+}
+
+.pricing_plan:hover h2 {
+    display: none;
+}
+
+.pricing_plan:hover {
+    background: -webkit-linear-gradient(0deg, #8490ff 0%, #62bdfc 100%);
+    transform: scale(1.03);
+    z-index: 1;
+}
+
+.pricing_plan:hover h5 {
+    color: #fff;
+}
+
+.pricing_plan:hover p {
+    color: #fff;
+}
+
+.pricing_plan:hover h2 {
+    color: #fff;
+}
+
+.pricing_plan:hover .inside_circle h1 {
+    color: #fff;
+}
+
+.pricing_plan:hover .outside_circle {
+    background-color: #99C3FE;
+}
+
+.pricing_plan:hover .inside_circle {
+    background-color: #7FB3FE;
+}
+
+.btn:hover {
+    background-color: #00a0fa;
+    border: 1px solid #fff !important;
+}
+
+.footer-logo img {
+    height: 60px;
+    width: 60px;
+}
+
+.useful-links ul li {
+    list-style-type: none;
+}
+
+.social {
+    height: 40px;
+    width: 40px;
+    transition: 0.3s;
+}
+
+.social:hover {
+    transform: scale(1.1);
+}
+
+.get-in-touch {
+    background-color: #F5F5F5;
+}
+
+ 
+
+
+@media (max-width: 767px) {
+    .divider {
+        display: none;
+    }
+}
+
+/* For Tablet View */
+@media screen and (min-device-width: 768px)
+    and (max-device-width: 1024px) {
+        .hide button {
+            color: #62bdfc;
+            background-color: #fff;
+            padding: 10px 40px;
+            letter-spacing: 1px;
+        }
+}
+
+ 
+
+
+
+
+@media (min-width: 767.98px) {
+    .divider {
+        display: block;
+        visibility: hidden;
+        font-size: 0;
+    }
+    
+}

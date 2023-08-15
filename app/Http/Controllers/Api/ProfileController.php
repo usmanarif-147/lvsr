@@ -25,20 +25,20 @@ class ProfileController extends Controller
 {
     public function index()
     {
-        $platforms = DB::table('user_platform')
+        $platforms = DB::table('user_platforms')
             ->select(
                 'platforms.id',
                 'platforms.title',
                 'platforms.icon',
                 'platforms.base_url',
-                'user_platform.created_at',
-                'user_platform.path',
-                'user_platform.label',
-                'user_platform.platform_order',
+                'user_platforms.created_at',
+                'user_platforms.path',
+                'user_platforms.label',
+                'user_platforms.platform_order',
             )
-            ->join('platforms', 'platforms.id', 'user_platform.platform_id')
+            ->join('platforms', 'platforms.id', 'user_platforms.platform_id')
             ->where('user_id', auth()->id())
-            ->orderBy(('user_platform.platform_order'))
+            ->orderBy(('user_platforms.platform_order'))
             ->get();
 
 
