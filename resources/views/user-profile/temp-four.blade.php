@@ -58,9 +58,9 @@
                                 <i class="fa fa-envelope-o text-white fs-3" aria-hidden="true"></i>
                             </a>
                         </div> --}}
-                        <h6 class="text-center px-5 text-white py-2">
+                        {{-- <h6 class="text-center px-5 text-white py-2">
                             Listen to my Podcast about How to Travel for Free
-                        </h6>
+                        </h6> --}}
 
                         <div class="mx-3 my-4">
                             <a href="{{ route('add.contact', $userDetails['user_id']) }}"
@@ -104,8 +104,8 @@
                                 <i class="fa fa-ticket fs-3 position-absolute btn-icon" aria-hidden="true"></i>
                             </button>
                         </div> --}}
-                        <h6 class="fw-bold text-uppercase text-center text-white px-3 lh-base py-3 m-0">About Travelling
-                            Around the world on my Youtube Channel</h6>
+                        {{-- <h6 class="fw-bold text-uppercase text-center text-white px-3 lh-base py-3 m-0">About Travelling
+                            Around the world on my Youtube Channel</h6> --}}
                     </div>
                 </div>
             </div>
